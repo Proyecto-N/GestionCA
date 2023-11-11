@@ -19,8 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surnames',
         'email',
+        'phone',
         'password',
+        'role',
     ];
 
     /**
@@ -41,4 +44,8 @@ class User extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function setPasswordAttributes($value) {
+        $this->attributes['password'] = bcrypt($value);
+    }
 }

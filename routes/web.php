@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+
+// Registration
+Route::get('/register', [AuthController::class, 'createRegister'])->name('register.create');
+Route::post('/register', [AuthController::class, 'store'])->name('register.store');
+
+// Roles
+Route::post('/roles', [RoleController::class, 'store']);
