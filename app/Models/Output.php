@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Output extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'product',
+        'concept',
+        'amount',
+        'delivered',
+        'recived',
+    ];
 }
