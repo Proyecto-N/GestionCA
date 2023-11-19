@@ -28,9 +28,14 @@ Route::get('/', function () {
 });
 
 
-// Registration
-Route::get('/register', [AuthController::class, 'createRegister'])->name('register.create');
+// Auth
+Route::get('/register', [AuthController::class, 'create'])->name('register.create');
 Route::post('/register/create', [AuthController::class, 'store'])->name('register.store');
+
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authenticate');
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // Users
 Route::get('/users', [UserController::class, 'index'])->name('users.index');

@@ -9,6 +9,7 @@
     <title>Registro</title>
     @vite('resources/css/comp.css')
     @vite('resources/css/register.css')
+    @vite('resources/css/app.css')
 </head>
 
 <body class="background">
@@ -88,7 +89,7 @@
                                     <select class="form__input" name="role">
                                     <option class="form__input" value="">Selecciona un rol</option>
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->role_id }}">{{ $role->role }}</option>
+                                        <option value="{{ $role->role_id }}" {{ $role->role_id == 1 ? '' : 'disabled' }} >{{ $role->role }}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -98,21 +99,21 @@
                         </div>
                     </div>
 
-                            @if (Session::get('success'))
-                                <div class="alert alert-success">
-                                    {{ Session::get('success') }}
-                                </div>
-                            @endif
+                    @if (Session::get('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
 
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li class="">{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li class="">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
 </body>
 

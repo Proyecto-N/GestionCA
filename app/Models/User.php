@@ -45,6 +45,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $primaryKey = 'user_id';
+
     public function setPasswordAttributes($value) {
         $this->attributes['password'] = bcrypt($value);
     }
