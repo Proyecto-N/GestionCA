@@ -7,19 +7,15 @@ use App\Http\Requests\OutputRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class OutputController extends Controller
 {
-    public function index()
+    public function index() : View
     {
         $outputs = Output::all();
         return view('outputs.index', ['outputs' => $outputs]);
     }
-
-    // public function create()
-    // {
-    //     return view('outputs.register');
-    // }
 
     public function store(OutputRequest $request) : RedirectResponse
     {

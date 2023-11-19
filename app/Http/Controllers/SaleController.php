@@ -7,18 +7,19 @@ use App\Http\Requests\SaleRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class SaleController extends Controller
 {
-    public function index()
+    public function index() : View
     {
         $sales = Sale::all();
         return view('sales.index', ['sales' => $sales]);
     }
 
-    public function create()
+    public function create() : View
     {
-        return view('sales.register');
+        return view('sales.create');
     }
 
     public function store(ProductRequest $request) : RedirectResponse

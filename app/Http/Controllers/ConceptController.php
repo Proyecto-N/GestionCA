@@ -7,18 +7,19 @@ use App\Http\Requests\ConceptRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ConceptController extends Controller
 {
-    public function index()
+    public function index() : View
     {
         $concepts = Concept::all();
         return view('concepts.index', ['concepts' => $concepts]);
     }
 
-    public function create()
+    public function create() : View
     {
-        return view('concepts.register');
+        return view('concepts.create');
     }
 
     public function store(ConceptRequest $request) : RedirectResponse

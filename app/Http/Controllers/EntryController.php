@@ -7,18 +7,19 @@ use App\Http\Requests\EntryRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class EntryController extends Controller
 {
-    public function index()
+    public function index() : View
     {
         $entries = Entry::all();
         return view('entries.index', ['entries' => $entries]);
     }
 
-    public function create()
+    public function create() : View
     {
-        return view('entries.register');
+        return view('entries.create');
     }
 
     public function store(EntryRequest $request) : RedirectResponse
