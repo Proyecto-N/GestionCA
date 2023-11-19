@@ -17,14 +17,38 @@ class SaleController extends Controller
         return view('sales.index', ['sales' => $sales]);
     }
 
+    public function show(Sale $sale) : View
+    {
+        return view('sales.show', ['sale' => $sale]);
+    }
+
     public function create() : View
     {
         return view('sales.create');
     }
 
-    public function store(ProductRequest $request) : RedirectResponse
+    public function edit(Sale $sale) : View
+    {
+        return view('sales.edit', ['sale' => $sale]);
+    }
+
+    public function store(SaleRequest $request) : RedirectResponse
     {
         Sale::create($request->validated());
         return redirect()->route('sales.index')->with('success', 'Venta registrada correctamente');
+    }
+
+    public function update(SaleRequest $request, Sale $sale) : RedirectResponse
+    {
+        $validatedRequest = $request->validated();
+
+        $sale->update($validatedRequest->all());
+        return redirect()->route('sales.show', $sale)->with('success', 'Venta actualizada correctamente');
+    }
+
+    public function destroy(Sale $sale) : RedirectResponse
+    {
+        $sale->delete();
+        return redirect()->route('sales.index')->with('success', 'Venta eliminada exitosamente');
     }
 }
