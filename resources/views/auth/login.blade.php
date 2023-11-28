@@ -1,27 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form method="POST" action="{{ route('auth.authenticate') }}">
-        @csrf
-        <input type="email" name="email" />
-        <input type="password" name="password" />
-        <input type="submit" value="Iniciar sesión" />
-    </form>
+@extends('layout')
 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li class="">{{ $error }}</li>
-            @endforeach
-        </ul>
+@section('title', 'Iniciar sesión')
+
+@section('content')
+    <div class="flex flex-col justify-center items-center min-h-screen">
+        <h2 class="text-center font-bold mb-10 text-3xl">Iniciar sesión</h2>
+
+        @if ($errors->any())
+            <x-alert type="error">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </x-alert>
+        @endif
+
+        <form method="POST" action="{{ route('auth.authenticate') }}">
+            @csrf
+
+            <x-input type="email" class="bg-white text-black" name="email" placeholder="Correo electrónico"  />
+            <x-input type="password" class="bg-white text-black" name="password" placeholder="Contraseña" viewable="true" suffix="eye"  />
+
+            <x-button can_submit="true" class="w-full" radius="small" size="small">Iniciar sesión</x-button>
+        </form>
     </div>
-@endif
-</body>
-</html>
+@endsection
