@@ -19,7 +19,7 @@ class CustomerController extends Controller
 
     public function show(Customer $customer) : View
     {
-        return view('customers.show', ['customer'] => $customer);
+        return view('customers.show', ['customer' => $customer]);
     }
 
     public function create() : View
@@ -29,7 +29,7 @@ class CustomerController extends Controller
 
     public function edit(Customer $customer) : View
     {
-        return view('customers.edit', ['customer'] => $customer);
+        return view('customers.edit', ['customer' => $customer]);
     }
 
     public function store(CustomerRequest $request) : RedirectResponse
