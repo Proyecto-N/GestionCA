@@ -13,13 +13,13 @@ use App\Http\Controllers\EntryController;
 use App\Http\Controllers\OutputController;
 
 // Index
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', fn() => view('index'))->middleware('auth');
 
 // Auth
-Route::get('/register', [AuthController::class, 'create'])->name('register.create');
-Route::post('/register/create', [AuthController::class, 'store'])->name('register.store');
+Route::middleware(['auth'])->group(function() {
+    Route::get('/register', [AuthController::class, 'create'])->name('register.create');
+    Route::post('/register/create', [AuthController::class, 'store'])->name('register.store');
+});
 
 Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authenticate');
@@ -27,28 +27,28 @@ Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authe
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // Users
-Route::resource('users', UserController::class)->except(['store', 'create']);
+Route::resource('users', UserController::class)->middleware('auth')->except(['store', 'create']);
 
 // Roles
-Route::resource('roles', RoleController::class);
+Route::resource('roles', RoleController::class)->middleware('auth');
 
 // Suppliers
-Route::resource('suppliers', SupplierController::class);
+Route::resource('suppliers', SupplierController::class)->middleware('auth');
 
 // Customers
-Route::resource('customers', CustomerController::class);
+Route::resource('customers', CustomerController::class)->middleware('auth');
 
 // Concepts
-Route::resource('concepts', ConceptController::class);
+Route::resource('concepts', ConceptController::class)->middleware('auth');
 
 // Products
-Route::resource('products', ProductController::class);
+Route::resource('products', ProductController::class)->middleware('auth');
 
 // Sales
-Route::resource('sales', SaleController::class);
+Route::resource('sales', SaleController::class)->middleware('auth');
 
 // Entries
-Route::resource('entries', EntryController::class);
+Route::resource('entries', EntryController::class)->middleware('auth');
 
 // Outputs
-Route::resource('outputs', OutputController::class);
+Route::resource('outputs', OutputController::class)->middleware('auth');
