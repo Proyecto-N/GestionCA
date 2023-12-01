@@ -29,7 +29,7 @@ class ConceptController extends Controller
 
     public function edit(Concept $concept) : View
     {
-        return view('concepts.edit', ['concept'] => $concept);
+        return view('concepts.edit', ['concept' => $concept]);
     }
 
     public function store(ConceptRequest $request) : RedirectResponse

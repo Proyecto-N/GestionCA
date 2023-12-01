@@ -17,10 +17,6 @@ class AuthController extends Controller
 {
     public function create() : View | RedirectResponse
     {
-        if(Auth::check()) {
-            return redirect('/');
-        }
-
         $roles = Role::all();
         return view('auth.register', ['roles' => $roles]);
     }

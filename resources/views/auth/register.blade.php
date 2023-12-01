@@ -14,10 +14,6 @@
 
 <body class="background">
     <div class="wrapper">
-        <header>
-            <!-- Navbar -->
-            @include('templates.navbar')
-        </header>
         <!-- Formulario -->
         <div class="l-form">
 
@@ -89,7 +85,7 @@
                                     <select class="form__input" name="role">
                                     <option class="form__input" value="">Selecciona un rol</option>
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->role_id }}" {{ $role->role_id == 1 ? '' : 'disabled' }} >{{ $role->role }}</option>
+                                        <option value="{{ $role->role_id }}" >{{ $role->role }}</option>
                                     @endforeach
                                     </select>
                                 </div>
