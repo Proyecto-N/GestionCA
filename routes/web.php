@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CustomerController;
@@ -28,9 +27,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // Users
 Route::resource('users', UserController::class)->middleware('auth')->except(['store', 'create']);
-
-// Roles
-Route::resource('roles', RoleController::class)->middleware('auth');
 
 // Suppliers
 Route::resource('suppliers', SupplierController::class)->middleware('auth');
