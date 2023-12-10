@@ -9,7 +9,7 @@
 ## Instalación
 1. Descargue una plantilla de proyecto de laravel con docker sail. Esto descargará todas las imágenes necesarias para que laravel pueda ejecutarse
 ```sh
-curl -s https://laravel.build/example-app?with-mysql | bash 
+curl -s https://laravel.build/example-app?with=mysql | bash 
 ```
 2. Clona este repositorio
 ```sh
@@ -45,6 +45,17 @@ o con la opción `-d` para ejecutarlo en modo detach
 sail up -d
 ```
 Ahora puede dirigirse a `http://localhost` para ver el proyecto en ejecución.
+
+### Instalar depedencias
+Hay dos tipos de depencias para este proyecto, las dependencias de node.js y las dependencias de composer. Para instalar las de npm usa:
+```sh
+sail npm install
+```
+
+Y para las de composer usa:
+```sh
+sail composer install
+```
 
 ### Estilos
 Para hacer uso de estilos o scripts y que estos funcionen correctamente debe ejecutar el siguiente comando. Esto ejecutará un servidor de node.js y se mantendrá a la escucha de cambios, lo cual refrescará la página cada vez que se detecte un guardado.
